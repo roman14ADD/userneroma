@@ -1,0 +1,302 @@
+/* MTM — страница цен. Тёмная тема, акцент — лаймовый. */
+:root {
+	--bg: #0d0f12;
+	--card: #171a1f;
+	--card-2: #1e222a;
+	--border: #2a2f3a;
+	--text: #eef1f6;
+	--muted: #9aa3b2;
+	--accent: #b8ff3c;
+	--accent-dark: #8fd400;
+	--radius: 16px;
+	--max: 960px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 17px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Навигация ─── */
+.nav {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	background: rgba(13, 15, 18, 0.92);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+	max-width: var(--max);
+	margin: 0 auto;
+	padding: 12px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+.nav-logo { font-weight: 800; font-size: 22px; letter-spacing: 1px; color: var(--text); }
+.nav-logo:hover { text-decoration: none; }
+.nav-logo-dot { color: var(--accent); }
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a { color: var(--muted); font-size: 15px; }
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+.nav-cta {
+	color: #0d0f12 !important;
+	background: var(--accent);
+	padding: 8px 16px;
+	border-radius: 999px;
+	font-weight: 600;
+}
+.nav-cta:hover { background: var(--accent-dark); text-decoration: none; }
+.nav-burger {
+	display: none;
+	flex-direction: column;
+	gap: 5px;
+	background: none;
+	border: 0;
+	padding: 6px;
+	cursor: pointer;
+}
+.nav-burger span { width: 24px; height: 2px; background: var(--text); display: block; }
+
+/* ─── Общие блоки ─── */
+.container { max-width: var(--max); margin: 0 auto; padding: 24px 20px 120px; }
+
+.card {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 28px;
+}
+
+section { margin-top: 56px; scroll-margin-top: 72px; }
+
+h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 10px 0 14px; font-weight: 800; }
+h2 { font-size: clamp(24px, 3.5vw, 32px); line-height: 1.2; margin: 0 0 10px; font-weight: 700; }
+h3 { font-size: 20px; margin: 0 0 8px; }
+
+.sub, .hero-sub { color: var(--muted); margin: 0 0 24px; max-width: 680px; }
+.section-label {
+	display: inline-block;
+	font-size: 13px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: var(--accent);
+	border: 1px solid var(--border);
+	border-radius: 999px;
+	padding: 4px 12px;
+}
+
+/* ─── Кнопки ─── */
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.btn-primary, .btn-ghost {
+	display: inline-block;
+	padding: 13px 26px;
+	border-radius: 999px;
+	font-size: 16px;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid transparent;
+	transition: background 0.15s, border-color 0.15s;
+}
+.btn-primary { background: var(--accent); color: #0d0f12; }
+.btn-primary:hover { background: var(--accent-dark); text-decoration: none; }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--accent); text-decoration: none; }
+
+/* ─── Первый экран ─── */
+.hero { scroll-margin-top: 72px; }
+.range {
+	margin-top: 26px;
+	background: var(--card-2);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 20px;
+}
+.range-label {
+	font-size: 13px;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.range-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+.range-item {
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 14px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.range-name { font-size: 14px; color: var(--muted); }
+.range-val { font-size: clamp(20px, 3vw, 26px); color: var(--accent); font-weight: 800; white-space: nowrap; }
+.range-term { font-size: 13px; color: var(--muted); }
+.range-note { font-size: 14px; color: var(--muted); margin: 14px 0 0; }
+/* ─── Карточки услуг ─── */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.item { display: flex; flex-direction: column; }
+.item-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.item-head h3 { margin: 0; }
+.item-val { font-size: 24px; font-weight: 800; color: var(--accent); white-space: nowrap; }
+.item-from { display: block; font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: right; }
+.item-desc { color: var(--muted); font-size: 15px; flex: 1; }
+.item-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 12px; }
+.item-term { font-size: 14px; color: var(--muted); }
+.item--free { border-color: var(--accent-dark); }
+.item--free .item-val { color: var(--accent); }
+
+/* ─── Калькулятор ─── */
+.calc { padding: 26px 26px 30px; }
+.calc-progress { height: 4px; background: var(--border); border-radius: 999px; overflow: hidden; }
+.calc-progress__bar {
+	display: block;
+	height: 100%;
+	width: 25%;
+	background: var(--accent);
+	border-radius: 999px;
+	transition: width 0.3s ease;
+}
+.calc-step-label { font-size: 13px; color: var(--muted); margin: 10px 0 18px; text-transform: uppercase; letter-spacing: 1px; }
+
+.calc-step { display: none; border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+.calc-step.is-active { display: block; animation: fadeUp 0.3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.calc-step legend { font-size: 21px; font-weight: 700; padding: 0; margin-bottom: 16px; }
+
+.calc-opt, .calc-check {
+	display: block;
+	position: relative;
+	background: var(--card-2);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 14px 16px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	transition: border-color 0.15s, background 0.15s;
+}
+.calc-opt:hover, .calc-check:hover { border-color: var(--accent-dark); }
+.calc-opt:has(input:checked), .calc-check:has(input:checked) {
+	border-color: var(--accent);
+	background: rgba(184, 255, 60, 0.07);
+}
+.calc-opt input, .calc-check input { position: absolute; opacity: 0; pointer-events: none; }
+.calc-opt__body, .calc-check__body { display: flex; flex-direction: column; gap: 2px; }
+.calc-opt__name, .calc-check__name { font-weight: 600; }
+.calc-opt__name em, .calc-check__name em { font-style: normal; color: var(--accent); font-size: 14px; margin-left: 8px; }
+.calc-opt__note, .calc-check__note { font-size: 14px; color: var(--muted); }
+.calc-opt__price { font-size: 14px; color: var(--accent); font-weight: 700; }
+
+.calc-nav { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+.calc-nav--stack { flex-direction: column; }
+.calc-nav--stack > * { width: 100%; }
+
+.calc-result { text-align: center; padding: 10px 0 6px; }
+.calc-result__label { display: block; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.calc-result__val { display: block; font-size: clamp(34px, 6vw, 52px); font-weight: 800; color: var(--accent); margin: 8px 0 2px; }
+.calc-result__term { display: inline-block; font-size: 15px; color: var(--text); background: var(--card-2); border: 1px solid var(--border); border-radius: 999px; padding: 5px 14px; }
+.calc-result__note { color: var(--muted); font-size: 15px; margin: 16px auto 0; max-width: 520px; }
+.calc-result__fine { font-size: 13px; color: var(--muted); opacity: 0.8; margin: 10px auto 0; max-width: 520px; }
+/* ─── Две колонки «дороже/дешевле» ─── */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.col h3 { font-size: 18px; }
+.col--more { border-top: 3px solid #ff6b6b; }
+.col--less { border-top: 3px solid var(--accent); }
+.col ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 15px; }
+.col li { margin-bottom: 8px; }
+
+/* ─── Сроки ─── */
+.terms { list-style: none; margin: 0; padding: 8px 24px; }
+.terms-row { display: flex; align-items: baseline; gap: 10px; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+.terms-row:last-child { border-bottom: 0; }
+.terms-name { font-weight: 600; }
+.terms-dots { flex: 1; border-bottom: 2px dotted var(--border); transform: translateY(-4px); }
+.terms-val { color: var(--accent); font-weight: 700; white-space: nowrap; }
+
+/* ─── FAQ ─── */
+.faq { display: flex; flex-direction: column; gap: 10px; }
+.faq-item { padding: 0; overflow: hidden; }
+.faq-item summary {
+	list-style: none;
+	cursor: pointer;
+	padding: 18px 22px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	font-weight: 600;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary svg { flex-shrink: 0; color: var(--accent); transition: transform 0.25s; }
+.faq-item[open] summary svg { transform: rotate(180deg); }
+.faq-body { padding: 0 22px 18px; color: var(--muted); font-size: 15px; }
+.faq-body p { margin: 0; }
+
+/* ─── Финальный блок и футер ─── */
+.final { text-align: center; margin-top: 56px; scroll-margin-top: 72px; }
+.final .sub { margin-left: auto; margin-right: auto; }
+.final .actions { justify-content: center; }
+
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+
+/* ─── Sticky-бар (только мобильные) ─── */
+.sticky-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 60;
+	display: none;
+	gap: 10px;
+	padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+	background: rgba(13, 15, 18, 0.96);
+	border-top: 1px solid var(--border);
+	backdrop-filter: blur(10px);
+}
+.sticky-bar .btn-primary, .sticky-bar .btn-ghost { flex: 1; padding: 12px 10px; font-size: 15px; }
+
+/* ─── Адаптив ─── */
+@media (max-width: 760px) {
+	body { font-size: 16px; }
+	.card { padding: 20px; }
+	.grid, .cols, .range-row { grid-template-columns: 1fr; }
+	.range-row { gap: 10px; }
+
+	.nav-inner { position: relative; }
+	.nav-links {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		background: var(--card);
+		border-bottom: 1px solid var(--border);
+		padding: 8px 0;
+	}
+	.nav-links.is-open { display: flex; }
+	.nav-links a { padding: 12px 20px; font-size: 16px; }
+	.nav-cta { margin: 8px 20px; text-align: center; }
+	.nav-burger { display: flex; }
+
+	.sticky-bar { display: flex; }
+	.actions .btn-primary, .actions .btn-ghost { flex: 1 1 100%; }
+	.terms { padding: 4px 16px; }
+}
+
+
